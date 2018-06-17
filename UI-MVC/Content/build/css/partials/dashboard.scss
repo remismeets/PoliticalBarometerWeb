@@ -1,0 +1,64 @@
+
+.no-widgets {
+  display: none;
+  margin: 100px 0;
+  > h1 {
+    margin-bottom: 20px !important;
+  }
+  > a {
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.no-graph-data {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.grid-stack {
+  position: relative;
+  margin-left: -10px !important;
+  margin-right: -10px !important;
+}
+
+.subscription > td > a:hover {
+  text-decoration: none;
+}
+
+.timeline-Header, .timeline-footer {
+  display: none;
+}
+
+.user-profile-icon {
+  padding-right: 5px;
+  width: 20px;
+  text-align: center;
+}
+
+#stories {
+  padding: 0;
+  margin-top: 35px;
+  .story-url {    
+    overflow: hidden;
+    white-space: nowrap;
+    width: 80%;
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+    a {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100%;
+      text-overflow: ellipsis;
+    }
+    i {
+      padding: 0 20px;
+      color: #d4d4d4;
+    }
+  }
+}
+

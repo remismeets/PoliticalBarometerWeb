@@ -1,0 +1,15 @@
+@using System.Web.Optimization
+@model BAR.UI.MVC.Models.ItemViewModels.PersonViewModels
+
+@section CustomCSS{
+    @Styles.Render("~/bundles/datatables-css")
+}
+
+<h1>@Model.Customization.PersonsAlias</h1>
+<hr/>
+@Html.Partial("Partials/_PersonTable", Model)
+<div class="space">space</div>
+
+@section CustomJS{
+    @Scripts.Render("~/bundles/datatables")
+}

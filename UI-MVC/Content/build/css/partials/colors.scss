@@ -1,0 +1,115 @@
+.c-primary {
+  color: var(--primary-color);
+}
+
+.c-secondary {
+  color: var(--secondary-color);
+}
+
+
+.blue {
+  color: #3498DB;
+}
+
+.purple {
+  color: #9B59B6;
+}
+
+.green {
+  color: var(--primary-color);
+}
+
+.dark-green {
+  color: #00a334;
+}
+
+.aero {
+  color: #9CC2CB;
+}
+
+.red {
+  color: #E74C3C;
+}
+
+.gold {
+  color: goldenrod;
+}
+
+.silver {
+  color: silver;
+}
+
+.bronze {
+  color: #a5644f;
+}
+
+.dark {
+  color: var(--secondary-color);
+}
+
+.border-blue {
+  border-color: var(--primary-color) !important;
+}
+
+.border-purple {
+  border-color: #9B59B6 !important;
+}
+
+.border-green {
+  border-color: var(--primary-color) !important;
+}
+
+.border-aero {
+  border-color: #9CC2CB !important;
+}
+
+.border-red {
+  border-color: #E74C3C !important;
+}
+
+.border-dark {
+  border-color: var(--secondary-color) !important;
+}
+
+.bg-white {
+  background: var(--white) !important;
+  color: var(--font-color);
+}
+
+.bg-green {
+  background: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
+  color: var(--white);
+}
+
+.bg-gold {
+  background: goldenrod !important;
+  border: 1px solid goldenrod !important;
+  color: var(--white);
+}
+
+.bg-silver {
+  background: silver !important;
+  border: 1px solid silver !important;
+  color: white;
+}
+
+.bg-bronze {
+  background: #a5644f !important;
+  border: 1px solid #a5644f !important;
+  color: var(--white);
+}
+
+.bg-red {
+  background: #E74C3C !important;
+  border: 1px solid #E74C3C !important;
+  color: var(--white);
+}
+
+.bg-success {
+  @include diagonal-gradient(rgb(32, 163, 105), rgb(39,142,135));
+}
+
+.bg-error {
+  @include diagonal-gradient(rgb(163, 53, 74), rgb(116, 0, 27));
+}

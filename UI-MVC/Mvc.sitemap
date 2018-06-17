@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="$resources:Resources,Home" controller="Home" action="Index">
+    <mvcSiteMapNode title="$resources:Resources,Privacy" controller="Home" action="Privacy"/>
+    <mvcSiteMapNode title="$resources:Resources,ForgotPassword" controller="User" action="ForgotPassword"/>
+    <mvcSiteMapNode title="$resources:Resources,Login" controller="User" action="Login"/>
+    <mvcSiteMapNode title="$resources:Resources,QuestionAndAnswer" controller="Home" action="Faq"/>
+    <mvcSiteMapNode title="$resources:Resources,WeeklyReview" controller="User" action="UserWeeklyReview"/>
+    <mvcSiteMapNode title="$resources:Resources,Dashboard" controller="User" action="Index">
+        <mvcSiteMapNode title="$resources:Resources,Settings" controller="User" action="Settings"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="$resources:Resources,AllPoliticians" controller="Person" action="Index">
+        <mvcSiteMapNode title="Person" controller="Person" action="Details" dynamicNodeProvider="BAR.UI.MVC.ItemDynamicNodeProvider, BAR.UI.MVC" />
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="$resources:Resources,AllParties" controller="Organisation" action="Index">
+            <mvcSiteMapNode title="Organisation" controller="Organisation" action="Details" dynamicNodeProvider="BAR.UI.MVC.ItemDynamicNodeProvider, BAR.UI.MVC" />
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="$resources:Resources,Topics" controller="Theme" action="Index">
+        <mvcSiteMapNode title="Topic" controller="Theme" action="Details" dynamicNodeProvider="BAR.UI.MVC.ItemDynamicNodeProvider, BAR.UI.MVC"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="$resources:Resources,AdminDashboard" controller="Admin" action="Index">
+        <mvcSiteMapNode title="$resources:Resources,PageManagement" controller="Admin" action="PageManagement"/>
+        <mvcSiteMapNode title="$resources:Resources,ItemManagement" controller="Admin" action="ItemManagement"/>
+        <mvcSiteMapNode title="$resources:Resources,UserManagement" controller="Admin" action="UserManagement"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="$resources:Resources,GeneralManagement" controller="SuperAdmin" action="GeneralManagement"/>
+    <mvcSiteMapNode title="$resources:Resources,SourceManagement" controller="SuperAdmin" action="SourceManagement"/>
+    <mvcSiteMapNode title="$resources:Resources,SubPlatformManagement" controller="SuperAdmin" action="PlatformManagement"/>
+  </mvcSiteMapNode>
+</mvcSiteMap>

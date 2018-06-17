@@ -1,0 +1,9 @@
+﻿@using BAR.UI.MVC.Models
+@model BAR.UI.MVC.Models.BaseViewModel
+
+
+<div class="nav navbar-nav searchbar">
+    <form class="navbar-form navbar-search zero-margin no-padding" role="search">
+        <input id="searchbar" type="text" class="form-control search-field h-40" placeholder="    @Resources.SearchFor @Model.Customization.PersonsAlias.ToLower(), @Model.Customization.OrganisationsAlias.ToLower() @Resources.And @Model.Customization.ThemesAlias.ToLower()">
+    </form>
+</div>

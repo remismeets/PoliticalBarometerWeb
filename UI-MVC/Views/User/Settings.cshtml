@@ -1,0 +1,322 @@
+﻿@using BAR.BL.Domain.Users
+@using BAR.UI.MVC.Models
+@using Microsoft.Ajax.Utilities
+@model BAR.UI.MVC.Models.SettingsViewModel
+
+<!-- User Settings -->
+<div class="row">
+    <div class="col-md-8 col-xs-12">
+        <div class="x_panel fixed_height_400">
+            <div class="x_title">
+                <h2>@Resources.User @Resources.Settings.ToLower()</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br/>
+                <form method="post" action="/api/User/UpdateProfile" id="userSettingsForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                            @Html.DisplayNameFor(m => m.Firstname) <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(model => model.Firstname, "", new {@class = "form-control col-md-7 col-xs-12", placeholder=@Html.DisplayNameFor(m => m.Firstname)})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                            @Html.DisplayNameFor(m => m.Lastname)
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(model => model.Lastname, "", new {@class = "form-control col-md-7 col-xs-12", placeholder = @Html.DisplayNameFor(m => m.Lastname) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">@Html.DisplayNameFor(m => m.Gender)</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="gender" class="btn-group" data-toggle="buttons">
+                                @if (Model.Gender == Gender.Man) {
+                                    <label class="btn btn-default active">
+                                        @Html.RadioButtonFor(model => model.Gender, Gender.Man) @Resources.Man
+                                    </label>
+                                    <label class="btn btn-default">
+                                        @Html.RadioButtonFor(model => model.Gender, Gender.Woman) @Resources.Woman
+                                    </label>
+                                } else {
+                                    <label class="btn btn-default">
+                                        @Html.RadioButtonFor(model => model.Gender, Gender.Man) @Resources.Man
+                                    </label>
+                                    <label class="btn btn-default active">
+                                        @Html.RadioButtonFor(model => model.Gender, Gender.Woman) @Resources.Woman
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @Html.DisplayNameFor(m => m.DateOfBirth)
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.EditorFor(model => model.DateOfBirth, new {htmlAttributes = new {@class = "form-control col-md-7 col-xs-12"}})
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                            @Html.DisplayNameFor(m => m.SelectedAreaId)
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.DropDownListFor(model => model.SelectedAreaId, Model.Areas, @Resources.SelectYourCity, new {@class = "form-control col-md-7 col-xs-12"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                            <div id="messageSettings" style="display: inline"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- Profile picture -->
+    <div class="col-md-4 col-xs-12">
+        <div class="x_panel fixed_height_400">
+            <div class="x_title">
+                <h2>@Resources.ProfilePicture</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                @using (Html.BeginForm("Settings", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                @Html.AntiForgeryToken()
+                    <div class="form-group">     
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <img src="@Url.Action("ProfilePicture", "User" )" style="width:160px;height:160px;" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <input type="file" name="ProfilePicture" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                            <div style="display: inline"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Settings -->
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Alert @Resources.Settings.ToLower()</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br/>
+                <form method="post" action="/api/User/UpdateAlerts" id="alertSettingsForm" class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AlertsViaWebsite, htmlAttributes: new { @class = "control-label col-md-6 col-sm-6 col-xs-12" })
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="alertsviawebsite" class="btn-group" data-toggle="buttons">
+                                @if (Model.AlertsViaWebsite == true)
+                                {
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.AlertsViaWebsite, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.AlertsViaWebsite, false) @Resources.No
+                                </label>
+                                }
+                                else
+                                {
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.AlertsViaWebsite, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.AlertsViaWebsite, false) @Resources.No
+                                </label>
+                                }
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AlertsViaEmail, htmlAttributes: new { @class = "control-label col-md-6 col-sm-6 col-xs-12" })
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="alertsviamail" class="btn-group" data-toggle="buttons">
+                                @if (Model.AlertsViaEmail)
+                                {
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.AlertsViaEmail, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.AlertsViaEmail, false) @Resources.No
+                                </label>
+                                }
+                                else
+                                {
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.AlertsViaEmail, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.AlertsViaEmail, false) @Resources.No
+                                </label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WeeklyReviewViaEmail, htmlAttributes: new { @class = "control-label col-md-6 col-sm-6 col-xs-12" })
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="weeklyreviewviamail" class="btn-group" data-toggle="buttons">
+                                @if (Model.WeeklyReviewViaEmail)
+                                {
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.WeeklyReviewViaEmail, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.WeeklyReviewViaEmail, false) @Resources.No
+                                </label>
+                                }
+                                else
+                                {
+                                <label class="btn btn-default">
+                                    @Html.RadioButtonFor(model => model.WeeklyReviewViaEmail, true) @Resources.Yes
+                                </label>
+                                <label class="btn btn-default active">
+                                    @Html.RadioButtonFor(model => model.WeeklyReviewViaEmail, false) @Resources.No
+                                </label>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6">
+                            <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                            <div id="alertSettingsMessage" style="display: inline"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="col-md-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@Resources.Account @Resources.Settings.ToLower()</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br/>
+                <form method="post" action="/api/User/UpdateAccount" id="accountSettingsForm" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
+                            @Html.DisplayNameFor(m => m.Password) <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @Html.PasswordFor(model => model.Password, new {type = "password", @class = "form-control col-md-7 col-xs-12"})
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="passwordnew">
+                            @Html.DisplayNameFor(m => m.PasswordNew) <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            @Html.PasswordFor(model => model.PasswordNew, new { type = "password", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.ValidationMessageFor(model => model.PasswordNew, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                            <div id="accountSettingsMessage" style="display: inline"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remove account Settings -->
+<div class="row">
+<div class="col-md-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@Resources.DeleteAccount</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br/>
+            <form method="post" action="/api/User" id="removeAccountForm" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        @Resources.DeleteAccountWarning
+                        <br/>
+                        <br/>
+                        <button type="submit" class="btn btn-danger">@Resources.DeleteAccount</button>
+                        <div id="removeAccountMessage" style="display: inline"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+@section CustomJS{
+    <script type="text/javascript">
+        //When the user settings form is submitted: post request to webapi
+        $("#userSettingsForm").on("submit", function(event) {
+            submitForm($(this), event, $("#messageSettings"));
+        });
+        $("#alertSettingsForm").on("submit", function(event) {
+            submitForm($(this), event, $("#alertSettingsMessage"));
+        });
+        $("#accountSettingsForm").on("submit", function(event) {
+            submitForm($(this), event, $("#accountSettingsMessage"));
+        });
+        
+        //Ajax call in generic function so every form can use the same code.
+        function submitForm($this, event, message) {
+                $.ajax({
+                    type: $this.attr('method'),
+                    url: $this.attr('action'),
+                    data: $this.serialize(),
+                    succes: message
+                        .addClass('green')
+                        .html("@Resources.Saved")
+                        .fadeOut(1000,
+                            function() {
+                                $(this)
+                                    .removeClass()
+                                    .html("")
+                                    .css("display", "inline");
+                            })
+                }).fail(() => message
+                    .addClass('red')
+                    .html("@Resources.Failed")
+                    .fadeOut(1000,
+                        function() {
+                            $(this)
+                                .removeClass()
+                                .html("")
+                                .css("display", "inline");
+                        }));
+                event.preventDefault();
+        }
+    </script>
+}

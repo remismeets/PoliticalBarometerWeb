@@ -1,0 +1,316 @@
+﻿@using System.Web.Optimization
+@model BAR.UI.MVC.Models.CustomizationViewModel
+
+
+@section CustomCSS{
+    <link href="../../Scripts/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+}
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel fixed_height_620">
+            <div class="x_title">
+                <h2>Pagina kleuren</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div class="col-sm-8 col-md-8 col-xs-12 center-margin">
+                    <form id="form_page_color" class="form-horizontal form-label-left">
+                        <label class="control-label">@Resources.PrimaryColor</label>
+                        <div id="cp-primary" class="input-group">
+                            @Html.TextBoxFor(model => model.PrimaryColor, "", new { @class = "form-control", id = "ip-primary", placeholder = @Model.PrimaryColor })
+                            <span class="input-group-addon">
+                                <i></i>
+                            </span>
+                        </div>
+                        <label class="control-label">@Resources.SecondaryColor</label>
+                        <div id="cp-secondary" class="input-group">
+                            @Html.TextBoxFor(model => model.SecondaryColor, "", new { @class = "form-control", id = "ip-secondary", placeholder = @Model.SecondaryColor })
+                            <span class="input-group-addon">
+                                <i></i>
+                            </span>
+                        </div>
+                        <label class="control-label">@Resources.TertiaryColor</label>
+                        <div id="cp-tertiary" class="input-group">
+                            @Html.TextBoxFor(model => model.TertiaryColor, "", new { @class = "form-control", id = "ip-tertiary", placeholder = @Model.TertiaryColor })
+                            <span class="input-group-addon">
+                                <i></i>
+                            </span>
+                        </div>
+                        <label class="control-label">@Resources.BackgroundColor</label>
+                        <div id="cp-bg" class="input-group">
+                            @Html.TextBoxFor(model => model.BackgroundColor, "", new { @class = "form-control", id = "ip-bg", placeholder = @Model.BackgroundColor })
+                            <span class="input-group-addon">
+                                <i></i>
+                            </span>
+                        </div>
+                        <label class="control-label">@Resources.TextColor</label>
+                        <div id="cp-font" class="input-group">
+                            @Html.TextBoxFor(model => model.TextColor, "", new { @class = "form-control", id = "ip-font", placeholder = @Model.TextColor })
+                            <span class="input-group-addon">
+                                <i></i>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Opslaan</button>
+                        <div id="messageSettings" style="display: inline"></div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel fixed_height_620">
+            <div class="x_title">
+                <h2>Pagina teksten</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div class="col-sm-8 col-md-8 col-xs-12 center-margin">
+                    <form id="form_page_text" class="form-horizontal form-label-left">
+
+                        <div class="form-group">
+                            <label class="control-label">Persoon alias (ev)</label>
+                            @Html.TextBoxFor(model => model.PersonAlias, "", new { @class = "form-control", placeholder = @Model.PersonAlias })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Personen alias (mv)</label>
+                            @Html.TextBoxFor(model => model.PersonsAlias, "", new { @class = "form-control", placeholder = @Model.PersonsAlias })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Organisatie alias (ev)</label>
+                            @Html.TextBoxFor(model => model.OrganisationAlias, "", new { @class = "form-control", placeholder = @Model.OrganisationAlias })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Organisaties alias (mv)</label>
+                            @Html.TextBoxFor(model => model.OrganisationsAlias, "", new { @class = "form-control", placeholder = @Model.OrganisationsAlias })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-labe">Thema alias (ev)</label>
+                            @Html.TextBoxFor(model => model.ThemeAlias, "", new { @class = "form-control", placeholder = @Model.ThemeAlias })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Thema's alias (mv)</label>
+                            @Html.TextBoxFor(model => model.ThemesAlias, "", new { @class = "form-control", placeholder = @Model.ThemesAlias })
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-dark">Opslaan</button>
+                            <div id="messageSettings" style="display: inline"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Privacy Pagina</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <form id="form_page_privacy" class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="privacy_title">
+                            Titel
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(model => model.PrivacyTitle, "", new { @class = "form-control", placeholder = @Model.PrivacyTitle })
+                        </div>
+                    </div>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="privacy_title">
+                        Privacy content
+                    </label>
+                    <div class="col-sm-6 col-md-6 col-xs-12 center-margin">
+                        <div class="form-group">
+                            <div id="alerts"></div>
+                            @Html.TextAreaFor(model => model.PrivacyText, new { @class = "form-control", id = "descr", @row = "20", placeholder = @Model.PrivacyText })
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12 center-margin">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-dark">Opslaan</button>
+                            <div id="messageSettings" style="display: inline"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>FAQ</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <form id="form_page_faq" class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="privacy_title">
+                            @Resources.Question
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(model => model.FAQQuestion, "", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="privacy_title">
+                        @Resources.Answer
+                    </label>
+                    <div class="col-sm-6 col-md-6 col-xs-12 center-margin">
+                        <div class="form-group">
+                            <div id="alerts"></div>
+                            @Html.TextBoxFor(model => model.FAQAnswer, new { @class = "form-control", id = "descr", @row = "20" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12 center-margin">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-dark">Opslaan</button>
+                            <div id="messageSettings" style="display: inline"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="x_content">
+                    <div class="form-group">
+                        @Html.Partial("Partials/_FAQTable", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Contact gegevens</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div class="col-sm-8 col-md-8 col-xs-12 center-margin">
+                    <form id="form_page_contact" class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label">Straat en huisnummer</label>
+                            @Html.TextBoxFor(model => model.StreetAndHousenumber, "", new { @class = "form-control", placeholder = @Model.StreetAndHousenumber })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Postcode</label>
+                            @Html.TextBoxFor(model => model.Zipcode, "", new { @class = "form-control", placeholder = @Model.Zipcode })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Stad</label>
+                            @Html.TextBoxFor(model => model.City, "", new { @class = "form-control", placeholder = @Model.City })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Land</label>
+                            @Html.TextBoxFor(model => model.Country, "", new { @class = "form-control", placeholder = @Model.Country })
+                        </div>
+                        <div class="form-group">
+                            <label class="control-labe">Email adres</label>
+                            @Html.TextBoxFor(model => model.Email, "", new { @class = "form-control", placeholder = @Model.Email })
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-dark">Opslaan</button>
+                            <div id="messageSettings" style="display: inline"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@Resources.HeaderPicture</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                @using (Html.BeginForm("HeaderImage", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <input type="file" name="WebsiteHeader" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                        <div style="display: inline"></div>
+                    </div>
+                </div>}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@Resources.LogoPicture</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                @using (Html.BeginForm("LogoImage", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <input type="file" name="WebsiteLogo" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                        <div style="display: inline"></div>
+                    </div>
+                </div>}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Dark Logo Picture</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                @using (Html.BeginForm("DarkLogoImage", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <input type="file" name="DarkWebsiteLogo" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-dark">@Resources.Save</button>
+                        <div style="display: inline"></div>
+                    </div>
+                </div>}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section CustomJS{
+    @Scripts.Render("~/Scripts/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js")
+    <script src="~/Content/build/js/pagemanagement.js"></script>
+}

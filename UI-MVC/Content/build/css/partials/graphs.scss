@@ -1,0 +1,82 @@
+
+
+canvas{
+  width: 100% !important;
+  height: auto !important;
+}
+
+.org-member {
+  padding: 0 10px 15px 10px;
+  strong {
+    display: block;
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+  &:hover {
+    strong {
+      text-decoration: underline;
+    }
+  }
+}
+
+.grid-stack-item-content {
+  overflow: visible !important;
+}
+
+.addToDashboard {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+}
+
+.edit-title {
+  display: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.title-input {
+  display: none;
+  width: auto;
+  height: 30px;
+}
+
+.graph-options {
+  display: flex;
+  justify-content: space-evenly;
+  .removeData {
+    margin-top: 10px;
+    float: right;
+    vertical-align: top;
+    display: none;
+  }
+  .compareSearch {
+    margin-top: 10px;
+    max-width: 400px;
+    height: 34px;
+    vertical-align: top;
+    display: inline-block;
+    padding-left: 36px;
+    background-image: url(../images/search_svg.svg);
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 15px 15px;
+  }
+}
+
+.itemHeader {
+  margin-top: 45px;
+  clear:both;
+}
+
+.graphLoading {
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--primary-color);
+  top: calc(50% - 10px);
+  left: calc(50% - 25px);
+  position: absolute;
+  display: block;
+}

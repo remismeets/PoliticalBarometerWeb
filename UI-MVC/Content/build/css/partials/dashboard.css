@@ -1,0 +1,42 @@
+.no-widgets {
+  display: none;
+  margin: 100px 0; }
+  .no-widgets > h1 {
+    margin-bottom: 20px !important; }
+  .no-widgets > a {
+    cursor: pointer; }
+    .no-widgets > a:hover {
+      text-decoration: none; }
+
+.no-graph-data {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%; }
+
+.grid-stack {
+  position: relative;
+  margin-left: -10px !important;
+  margin-right: -10px !important; }
+  .grid-stack > .grid-stack-item {
+    z-index: 2; }
+
+.subscription > td > a:hover {
+  text-decoration: none; }
+
+.addToDashboard {
+  display: inline-block;
+  vertical-align: top; }
+
+.graph-options {
+  text-align: center; }
+
+.timeline-Header, .timeline-footer {
+  display: none; }
+
+.user-profile-icon {
+  padding-right: 5px;
+  width: 20px;
+  text-align: center; }
+
+/*# sourceMappingURL=dashboard.css.map */

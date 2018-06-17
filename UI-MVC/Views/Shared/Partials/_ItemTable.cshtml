@@ -1,0 +1,83 @@
+﻿@using BAR.BL.Domain.Items
+@using BAR.UI.MVC.Helpers
+@model BAR.UI.MVC.Models.ItemViewModels.ItemCreateViewModel
+
+<table id="datatable-buttons" class="table" cellspacing="10px" width="100%">
+
+    <colgroup>
+        <col style="width: 30%">
+        <col style="width: 12%">
+        <col style="width: 8%">
+        <col style="width: 8%">
+        <col style="width: 8%">
+        <col style="width: 8%">
+        <col style="width: 13%">
+        <col style="width: 100px">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>
+            @Resources.Name
+        </th>
+        <th>
+            @Resources.Category
+        </th>
+        <th>
+            @Resources.Mentions
+        </th>
+        <th>
+            @Resources.Positive
+        </th>
+        <th>
+            @Resources.Negative
+        </th>
+        <th title=@Resources.CalculatedByAmountOfTweets>
+            @Resources.Trending
+        </th>
+        <th>
+            @Resources.CreationDate
+        </th>
+        @if (User.Identity.IsAuthenticated) {
+            <th>
+            </th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Items) {
+        <tr class="subscription">
+            <td>
+                @Html.TextBoxFor(i => item.Name, new {@class = "renameItem form-control", data_item_id = @item.ItemId})
+                <span style="display:none">@item.Name</span>
+            </td>
+            <td>
+                @item.ItemType
+            </td>
+            <td>
+                @item.NumberOfMentions
+            </td>
+            <td class="green">
+                @item.SentimentPositive
+                <i class="glyphicon glyphicon-arrow-up"></i>
+            </td>
+            <td class="red">
+                @item.SentimentNegative
+                <i class="glyphicon glyphicon-arrow-down"></i>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrendingPercentage) %
+            </td>
+            <td>
+                @item.CreationDate.ToShortDateString()
+            </td>
+            <td>
+                @if (item.Deleted) {
+                    <a class="removeItem btn btn-dark btn-xs" data-item-id="@item.ItemId" title=@Resources.RecoverItem>@Resources.Recover</a>
+                } else {
+                    <a class="removeItem btn btn-danger btn-xs" data-item-id="@item.ItemId" title=@Resources.RemoveItem>@Resources.Remove</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

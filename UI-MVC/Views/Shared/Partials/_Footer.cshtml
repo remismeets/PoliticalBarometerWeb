@@ -1,0 +1,74 @@
+﻿@using BAR.UI.MVC.Controllers
+@using BAR.UI.MVC.Helpers
+@model BAR.UI.MVC.Models.BaseViewModel
+
+@Html.FooterHelper(Model)
+<footer>
+    <div class="footer-container">
+        <div class="col-md-2 col-sm-3 col-xs-12 col-md-offset-1">
+            <ul>
+                <li>
+                    <a href='@Url.RootUrl()'>
+                        <i runat="server" class="small-logo colored" style="background-image: url(&quot;@Url.DarkLogoImage()&quot;);"></i>
+                    </a>
+                </li>
+                <li>
+                    &copy; @DateTime.Now.Year - Barometer
+                </li>
+                <li>
+                    <button onclick="location.href='mailto:@Model.Customization.Email';" class="btn btn-default">@Resources.EmailUs</button>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-12">
+            <h4>@Resources.Links</h4>
+            <ul>
+                <li>
+                    <a href="@Url.RootUrl()">@Resources.Home</a>
+                </li>
+                <li>
+                    <a href="@Url.DashboardUrl()">@Resources.Dashboard</a>
+                </li>
+                <li>
+                    <a href="@Url.PersonUrl()">@Model.Customization.PersonsAlias</a>
+                </li>
+                <li>
+                    <a href="@Url.OrganisationUrl()">@Model.Customization.OrganisationsAlias</a>
+                </li>
+                <li>
+                    <a href="@Url.OrganisationUrl()">@Model.Customization.ThemesAlias</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-12">
+            <h4>@Resources.MoreInfo</h4>
+            <ul>
+                <li>
+                    <a href='#'>Login/Signup</a>
+                </li>
+                <li>
+                    <a href="@Url.FaqUrl()">@Resources.QuestionAndAnswer</a>
+                </li>
+                <li>
+                    <a href="@Url.PrivacyUrl()">@Resources.Privacy</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-12">
+            <h4>@Resources.Contact</h4>
+            <ul>
+                <li>
+                    @Model.Customization.StreetAndHousenumber
+                </li>
+                <li>
+                    @Model.Customization.City
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12">
+            <h4>@Resources.Languages</h4>
+           @Html.Partial("Partials/_LanguagePreferences")
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</footer>

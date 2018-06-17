@@ -1,0 +1,27 @@
+﻿@using System.Web.Optimization
+@model BAR.UI.MVC.Models.EditUserViewModel
+
+@section CustomCSS{
+    @Styles.Render("~/bundles/datatables-css", "~/bundles/datatables-buttons-css")
+}
+
+<h1>@Model.PageTitle</h1>
+<hr />
+@if (User.IsInRole("Admin")) {
+    @Html.Partial("Partials/_UserTable", Model)
+} else {
+    @Html.Partial("Partials/_AdminTable", Model)
+}
+<div class="space">space</div>
+<div class="space">space</div>
+
+@section CustomJS{
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/datatables-buttons", "~/bundles/datatables-buttons-bs")
+
+    <script src="~/Scripts/DataExport/jszip.min.js"></script>
+    <script src="~/Scripts/DataExport/pdfmake.min.js"></script>
+    <script src="~/Scripts/DataExport/vfs_fonts.js"></script>
+    <script src="~/Scripts/DataExport/buttons.html5.min.js"></script>
+    <script src="~/Content/build/js/usermanagement.js"></script>
+}

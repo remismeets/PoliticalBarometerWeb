@@ -1,0 +1,64 @@
+﻿@using System.Web.Optimization
+@using BAR.UI.MVC.App_GlobalResources
+@model BAR.UI.MVC.Models.ItemViewModels.PersonViewModels
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@section CustomCSS{
+    <link rel="stylesheet" href="~/Scripts/vue/vue-form-wizard.css">
+    <link rel="stylesheet" href="../../Content/build/css/vendor/gridstack.css" />
+}
+
+<script src="https://nodebox.live/api/v1/ndbx.js"></script>
+
+
+<section class="dashboard-page">
+    <h1>@Model.PageTitle</h1>
+    <hr />
+    <div>
+        <button class="btn btn-primary" data-toggle="modal" data-target=".makeGraphModal">Add chart</button>
+    </div>
+    <br>
+    <!-- Widgets -->
+    <div class="grid-stack" id="grid">
+    </div>
+
+</section>
+
+<div class="space">space</div>
+
+<div class="no-widgets text-center">
+    <h1>@Resources.NoChartsYet</h1>
+    <a id="makeModal" class="font_22" data-toggle="modal" data-target=".makeGraphModal"><i class="fa fa-plus-circle"></i> @Resources.AddAChart</a>
+</div>
+
+<!-- Make graph modal -->
+@Html.Partial("Partials/_GraphWizard", Model)
+
+<div class="space">space</div>
+
+<!-- Subscriptions -->
+@if (Model.Persons.Any())
+{
+    <section class="subscriptions">
+        <br />
+        <h1>@Resources.Subscriptions</h1>
+        <hr />
+        <section class="shadowed">
+            @Html.Partial("Partials/_PersonTable", Model)
+        </section>
+    </section>
+}
+
+<div class="space">space</div>
+
+@section CustomJS{
+    <script src="~/Scripts/vue/vue.min.js"></script>
+    <script src="~/Scripts/vue/vue-form-wizard.js"></script>
+    <script src="~/Scripts/vue/vue-form-generator.js"></script>
+    <script src="~/Scripts/ChartJS/Chart.js"></script>
+    @Scripts.Render("~/bundles/gridstack")
+    <script src="~/Content/build/js/graphWizard.js"></script>
+    <script src="~/Content/build/js/subscribeDashboard.js"></script>
+}

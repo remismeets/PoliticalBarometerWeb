@@ -1,0 +1,110 @@
+﻿@using System
+
+
+@using System.Web.Optimization
+@using BAR.UI.MVC.Controllers
+@using BAR.UI.MVC.Helpers
+@using BAR.UI.MVC.Models
+@using MvcSiteMapProvider.Web.Html
+@model BAR.UI.MVC.Models.BaseViewModel
+
+<!DOCTYPE html>
+<html lang="en" 
+      style=
+      "
+        --primary-color: @Model.Customization.PrimaryColor;
+        --primary-darker: @Model.Customization.PrimaryDarkerColor;
+        --primary-darkest: @Model.Customization.PrimaryDarkestColor;
+        --secondary-lighter: @Model.Customization.SecondaryLighterColor;
+        --secondary-color: @Model.Customization.SecondaryColor;
+        --secondary-darker: @Model.Customization.SecondaryDarkerColor;
+        --secondary-darkest: @Model.Customization.SecondaryDarkestColor;
+        --tertiary-color: @Model.Customization.TertiaryColor;
+        --white: @Model.Customization.WhiteColor;
+        --bg-color: @Model.Customization.BackgroundColor;
+        --font-color: @Model.Customization.TextColor;
+        --link-color: @Model.Customization.LinkColor;
+      ">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@(Model.PageTitle.Length == 0 ? @ViewBag.Title : Model.PageTitle)</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon.png">
+    @Styles.Render("~/Content/css")
+
+    @if (IsSectionDefined("CustomCSS")) {
+        @RenderSection("CustomCSS")
+    }
+
+    <!-- Custom Theme Style -->
+    @Styles.Render("~/Content/custom")
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body class="nav-sm">
+    <div class="container body">
+        <div class="main_container">
+
+            <!-- top navigation -->
+            <nav>
+                <div class="nav-container">
+                    <div class="navbar-logo-container" style="border: 0;">
+                        <a href='@Url.RootUrl()'>
+                            <i runat="server" class="small-logo colored nav-home" style="background-image: url(&quot;@Url.DarkLogoImage()&quot;);"></i>
+                        </a>
+                    </div>
+                    <!-- search -->
+                    @Html.Partial("Partials/_SearchBar", Model)
+        
+                    <!-- login -->
+                    @Html.ShowNavLogin(Model)
+                </div>
+            </nav>
+            <!-- /top navigation -->
+            
+            <!-- breadcrumbs -->
+            <div class="breadcrumb-container">
+                @Html.MvcSiteMap().SiteMapPath("BootstrapSiteMapPathHelperModel")
+            </div>
+
+            <!-- page content -->
+            @if (IsSectionDefined("Homepage"))
+            {
+                @RenderSection("Homepage")
+            }
+
+            <div class="main_padding container-centered" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            
+            <!-- footer content -->
+            @Html.Partial("Partials/_Footer")
+            <!-- /footer content -->
+            
+        </div>
+    </div>
+<div id="notificationMessage"></div>
+
+<!-- modals -->
+@if (Model.User == null) {
+    @Html.Partial("Partials/_LoginModal", new LoginViewModel())
+}
+
+<!-- Scripts -->
+    <script src="/Home/GetResources"></script> 
+    @Scripts.Render("~/bundles/jquery","~/Content/build/js/searchbar.js", "~/bundles/bootstrap", "~/bundles/dates", "~/bundles/timeago", "~/bundles/custom")
+    @Scripts.Render("~/Content/build/js/alerts.js")
+
+    @if (IsSectionDefined("CustomJS"))
+    {
+        @RenderSection("CustomJS")
+    }
+</body>
+</html>

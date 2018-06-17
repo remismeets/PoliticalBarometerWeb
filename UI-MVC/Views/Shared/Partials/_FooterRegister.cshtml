@@ -1,0 +1,31 @@
+﻿@model BAR.UI.MVC.Models.RegisterViewModel
+
+<footer class="joinus">
+    <div class="footer-container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h1>
+            <strong>@Resources.StayUpToDate</strong>
+        </h1>
+        @Resources.SignupToFollow @Model.Customization.PersonsAlias.ToLower(), @Model.Customization.OrganisationsAlias.ToLower() @Resources.Or.ToLower() @Model.Customization.ThemesAlias.ToLower().
+    </div>
+    @using (Html.BeginForm("Register", "User", FormMethod.Post, new {@class = "form-horizontal", role = "form"})) {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                @Html.TextBoxFor(m => m.Firstname, new {@class = "form-control login-input", @placeholder = Resources.Firstname})
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                @Html.TextBoxFor(m => m.Email, new {@class = "form-control login-input", @placeholder = Resources.Email})
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                @Html.PasswordFor(m => m.Password, new {@class = "form-control login-input", @placeholder = Resources.Password})
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="form-check login-input">
+                    <button type="submit" class="btn btn-default login-input w-100 h-40">@Resources.Signup</button>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+</footer>

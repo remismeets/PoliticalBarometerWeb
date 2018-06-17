@@ -1,0 +1,110 @@
+/*
+    The urls may give an error (when compiled the urls are correct)
+ */
+
+.person-image-top {
+  background-image: url("../images/user.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  margin-right: 5px;
+}
+
+.person-image {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  margin-right: 5px;
+}
+
+.small-logo {
+  background-image: url("../images/logo/logo-white.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  height: 60px;
+  display: block;
+  border-bottom: 1px solid #a5a9ac;
+}
+
+.small-logo.colored {
+  background-image: url("../images/logo/logo-dark.svg");
+  border: none;
+  height: 50px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.loadingAlerts {
+  background-image: url("../images/loading.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  margin: 30px auto 30px auto;
+}
+
+.loadMessage {
+  background-image: url("../images/rolling.svg");
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
+
+.profile_pic {
+  width: 35%;
+  float: left;
+}
+
+.img-circle.profile_img {
+  width: 70%;
+  background: var(--white);
+  margin-left: 15%;
+  z-index: 1000;
+  position: inherit;
+  margin-top: 10px;
+  border: 1px solid rgba(52, 73, 94, 0.44);
+  padding: 4px;
+}
+
+.text-over-image {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  color: var(--secondary-color);
+  height: 40px;
+  width: 123px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 40px;
+  background: rgba(255, 255, 255, .5);
+  @include border-radius;
+  &:hover {
+    background: rgb(255, 255, 255);
+  }
+}
+
+.avatar-view {
+  object-fit: cover;
+  width: 100% !important;
+  @include border-radius;
+}
+
+.related-img-view {
+  object-fit: cover;
+  width: 90% !important;
+  @include border-radius;
+}
+
+.profile_left {
+  padding-left: 0;
+  margin-left: -5px;
+}

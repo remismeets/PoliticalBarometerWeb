@@ -1,0 +1,73 @@
+﻿@model BAR.UI.MVC.Models.ItemViewModels.ItemCreateViewModel
+
+<div class="modal bs-example-modal-lg fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="panel-title">@Model.Customization.PersonAlias</h4>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                @using (Html.BeginForm("CreatePerson", "Admin", FormMethod.Post))
+                                {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <input class="form-control login-input" id="Name" name="Name" placeholder="@Resources.Name @Resources.Required" type="text" value="">
+                                    <input class="form-control login-input" id="Website" name="Website" placeholder="@Resources.Website @Resources.Required" type="text" value="">
+                                    <input class="form-control login-input" id="Facebook" name="Facebook" placeholder="Facebook" type="text" value="">
+                                    <input class="form-control login-input" id="Twitter" name="Twitter" placeholder="Twitter" type="text" value="">
+
+                                    @Html.DropDownListFor(model => model.OrganisationId, Model.Organisations, @Resources.SelectOrganisation, new { @class = "form-control login-input", @id = "OrganisationId", @name = "OrganisationId" })
+                                    <div class="form-check">
+                                        <button type="submit" class="btn btn-primary login-input w-100 h-40">@Resources.AddItem</button>
+                                    </div>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="panel-title">@Model.Customization.OrganisationAlias</h4>
+                        </a>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                @using (Html.BeginForm("CreateOrganisation", "Admin", FormMethod.Post))
+                                {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <input class="form-control login-input" id="Name" name="Name" placeholder="@Resources.Name @Resources.Required" type="text" value="">
+                                    <input class="form-control login-input" id="Website" name="Website" placeholder="@Resources.Website @Resources.Required"type="text" value="">
+                                    <div class="form-check">
+                                        <button type="submit" class="btn btn-primary w-100 h-40 login-input">@Resources.AddItem</button>
+                                    </div>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h4 class="panel-title">@Model.Customization.ThemeAlias</h4>
+                        </a>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                @using (Html.BeginForm("CreateTheme", "Admin", FormMethod.Post))
+                                {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <input class="form-control login-input" id="Name" name="Name" placeholder="@Resources.Name @Resources.Required" type="text" value="">
+                                    <input class="form-control login-input" id="Keywords" name="Keywords" placeholder="@Resources.Keywords @Resources.Required" type="text" value="">
+                                    <div class="form-check">
+                                        <button type="submit" class="btn btn-primary login-input w-100 h-40">@Resources.AddItem</button>
+                                    </div>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
